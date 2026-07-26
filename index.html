@@ -1369,34 +1369,5 @@
       updatePageIndicator();
     });
   </script>
-
-</body>
-</html>verflow = 'hidden';
-      }
-    }
-
-    function closeMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const overlay = document.getElementById('mobile-overlay');
-      menu.classList.remove('open');
-      overlay.classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-
-    // Scroll Reveal Observer
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      updatePageIndicator();
-    });
-  </script>
-
 </body>
 </html>
