@@ -860,7 +860,7 @@
     </div>
 
     <!-- BOOK PAGE TURNER CONTROLS -->
-    <div class="flex items-center justify-between max-w-5xl mx-auto mt-8 px-2 reveal">
+    <div id="book-controls-container" class="flex items-center justify-between max-w-5xl mx-auto mt-8 px-2 reveal">
       <button id="prev-page-btn" onclick="prevSpread()" class="flex items-center gap-2 text-cream/70 hover:text-gold text-sm font-bold bg-charcoal-mid border border-white/10 hover:border-gold/40 px-5 py-2.5 rounded-full transition-all">
         ← Page Précédente
       </button>
@@ -872,6 +872,170 @@
       <button id="next-page-btn" onclick="nextSpread()" class="flex items-center gap-2 text-cream/70 hover:text-gold text-sm font-bold bg-charcoal-mid border border-white/10 hover:border-gold/40 px-5 py-2.5 rounded-full transition-all">
         Page Suivante →
       </button>
+    </div>
+
+    <!-- ════════════ CARTE VISUELLE GRID CONTAINER ════════════ -->
+    <div id="grid-menu-container" class="hidden reveal">
+      
+      <!-- Live Search & Filter Bar -->
+      <div class="max-w-4xl mx-auto mb-10 space-y-4">
+        <div class="relative">
+          <input type="text" id="menu-search-input" onkeyup="filterVisualMenu()"
+                 placeholder="🔍 Rechercher un plat, dessert ou boisson (ex: Nutella, Mojito, Tiramisu...)"
+                 class="w-full bg-charcoal-mid border border-gold/30 rounded-2xl py-3.5 px-6 text-sm text-cream placeholder-cream/40 focus:outline-none focus:border-gold shadow-xl transition-all" />
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex gap-2 overflow-x-auto pb-2 px-1 no-scrollbar justify-start sm:justify-center">
+          <button class="grid-filter-btn active px-4 py-2 rounded-full text-xs font-bold bg-gold text-charcoal shadow-md" onclick="filterCategory('all', this)">✨ Tous les Plats</button>
+          <button class="grid-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-charcoal-mid border border-white/10 text-cream/70 hover:border-gold" onclick="filterCategory('crepe-salee', this)">🍳 Crêpes Salées</button>
+          <button class="grid-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-charcoal-mid border border-white/10 text-cream/70 hover:border-gold" onclick="filterCategory('crepe-sucree', this)">🍫 Crêpes Sucrées</button>
+          <button class="grid-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-charcoal-mid border border-white/10 text-cream/70 hover:border-gold" onclick="filterCategory('dessert', this)">🍰 Cheesecake & Tiramisu</button>
+          <button class="grid-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-charcoal-mid border border-white/10 text-cream/70 hover:border-gold" onclick="filterCategory('patisserie', this)">🍪 Pâtisserie</button>
+          <button class="grid-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-charcoal-mid border border-white/10 text-cream/70 hover:border-gold" onclick="filterCategory('boisson', this)">🥤 Shakes & Boissons</button>
+        </div>
+      </div>
+
+      <!-- Dish Cards Grid -->
+      <div id="visual-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+        <!-- Crêpes Salées -->
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="crepe-salee" data-name="Végétarien">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">Végétarien 🍳</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">25 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Crêpe garnie de légumes frais saisis, fromage et herbes de Provence.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20une%20Cr%C3%AApe%20V%C3%A9g%C3%A9tarien%20%2825dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="crepe-salee" data-name="La Queen">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">La Queen 👑</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">30 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Recette royale au jambon de dinde, fromage fondu et champignon.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20La%20Queen%20%2830dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="crepe-salee" data-name="4 Fromages">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">4 Fromages 🧀</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">35 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Mozzarella, cheddar, emmental et fromage bleu fondant.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%204%20Fromages%20%2835dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="crepe-salee" data-name="Ayo Med">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">Ayo Med Signature ⭐</h4>
+              <span class="bg-gold text-charcoal text-xs font-black px-3 py-1 rounded-full">45 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Spécialité du chef: Viande hachée assaisonnée, double fromage et œuf miroir.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20Ayo%20Med%20Signature%20%2845dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold text-charcoal font-extrabold py-2 px-4 rounded-xl shadow-md hover:opacity-90 transition-all">Commander 📲</a>
+        </div>
+
+        <!-- Crêpes Sucrées -->
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="crepe-sucree" data-name="Nutella Banane">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">Nutella Banane 🍌</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">25 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Nutella crémeux généreux, bananes fraîches tranchées et sucre glace.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20Nutella%20Banane%20%2825dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="crepe-sucree" data-name="Kunafa Nuttela Pistache">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">Kunafa Nutella Pistache 🍫</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">30 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Crêpe originale croustillante à la kunafa, Nutella et éclats de pistaches.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20Kunafa%20Nutella%20Pistache%20%2830dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="crepe-sucree" data-name="Dubai">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">Dubai Special 🌴</h4>
+              <span class="bg-gold text-charcoal text-xs font-black px-3 py-1 rounded-full">35 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Crème pistache orientale, kunafa dorée et chocolat d'exception.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20Dubai%20Special%20%2835dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold text-charcoal font-extrabold py-2 px-4 rounded-xl shadow-md hover:opacity-90 transition-all">Commander 📲</a>
+        </div>
+
+        <!-- Desserts -->
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="dessert" data-name="Cheesecake Lotus">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">Cheesecake Lotus 🍰</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">15 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Cheesecake onctueux au biscuit spéculoos Lotus et crème fondante.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20Cheesecake%20Lotus%20%2815dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="dessert" data-name="Tiramisu Kinder Bueno">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">Tiramisu Kinder Bueno 🍮</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">25 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Tiramisu italien fait maison garni de Kinder Bueno et crème noisette.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20Tiramisu%20Kinder%20Bueno%20%2825dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="patisserie" data-name="San Sebastian Pistache">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">San Sebastian Pistache 🍪</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">25 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Gâteau au fromage basque caramélisé nappé de crème pistache intense.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20San%20Sebastian%20Pistache%20%2825dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+        <!-- Drinks -->
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="boisson" data-name="Mojito Red Bull">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">Mojito Red Bull 🍹</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">35 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Cocktail énergisant glacé à la menthe fraîche, citron vert et Red Bull.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20Mojito%20Red%20Bull%20%2835dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+        <div class="visual-menu-card p-6 rounded-2xl flex flex-col justify-between" data-category="boisson" data-name="Pina Colada">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <h4 class="font-bold text-cream text-lg">Pina Colada 🍍</h4>
+              <span class="bg-gold/20 text-gold text-xs font-black px-3 py-1 rounded-full">25 dh</span>
+            </div>
+            <p class="text-cream/60 text-xs leading-relaxed">Cocktail tropical onctueux à l'ananas frais et lait de coco.</p>
+          </div>
+          <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20Pina%20Colada%20%2825dh%29" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-center gap-1.5 bg-gold/15 border border-gold/30 hover:bg-gold hover:text-charcoal text-gold text-xs font-extrabold py-2 px-4 rounded-xl transition-all">Commander 📲</a>
+        </div>
+
+      </div>
     </div>
 
   </section>
@@ -1033,7 +1197,7 @@
       <div class="flex gap-4 text-xs text-cream/40 pt-2">
         <a href="#hero" class="hover:text-gold transition-colors">Accueil</a>
         <span>·</span>
-        <a href="#menu" class="hover:text-gold transition-colors">Menu Livre</a>
+        <a href="#menu" class="hover:text-gold transition-colors">Carte & Menu</a>
         <span>·</span>
         <a href="https://www.instagram.com/ayomedcrepe/" target="_blank" rel="noopener" class="hover:text-gold transition-colors">Instagram</a>
       </div>
@@ -1051,6 +1215,70 @@
   <script>
     let currentSpread = 1;
     const totalSpreads = 4;
+
+    // Dual Mode Switcher
+    function setMenuMode(mode) {
+      const bookWrapper = document.querySelector('.book-wrapper');
+      const bookTabs = document.querySelector('#menu .no-scrollbar');
+      const bookControls = document.getElementById('book-controls-container');
+      const gridContainer = document.getElementById('grid-menu-container');
+      const btnBook = document.getElementById('view-mode-book');
+      const btnGrid = document.getElementById('view-mode-grid');
+
+      if (mode === 'grid') {
+        if (bookWrapper) bookWrapper.classList.add('hidden');
+        if (bookTabs) bookTabs.classList.add('hidden');
+        if (bookControls) bookControls.classList.add('hidden');
+        if (gridContainer) gridContainer.classList.remove('hidden');
+
+        btnBook.classList.remove('active');
+        btnGrid.classList.add('active');
+      } else {
+        if (bookWrapper) bookWrapper.classList.remove('hidden');
+        if (bookTabs) bookTabs.classList.remove('hidden');
+        if (bookControls) bookControls.classList.remove('hidden');
+        if (gridContainer) gridContainer.classList.add('hidden');
+
+        btnGrid.classList.remove('active');
+        btnBook.classList.add('active');
+      }
+    }
+
+    // Filter Visual Menu by Search Text
+    function filterVisualMenu() {
+      const query = document.getElementById('menu-search-input').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.visual-menu-card');
+
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        const text = card.textContent.toLowerCase();
+        if (name.includes(query) || text.includes(query)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Filter Visual Menu by Category Pill
+    function filterCategory(category, btn) {
+      document.querySelectorAll('.grid-filter-btn').forEach(b => {
+        b.classList.remove('active', 'bg-gold', 'text-charcoal');
+        b.classList.add('bg-charcoal-mid', 'border', 'border-white/10', 'text-cream/70');
+      });
+
+      btn.classList.add('active', 'bg-gold', 'text-charcoal');
+      btn.classList.remove('bg-charcoal-mid', 'border', 'border-white/10', 'text-cream/70');
+
+      const cards = document.querySelectorAll('.visual-menu-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
 
     function updatePageIndicator() {
       const indicator = document.getElementById('page-indicator');
@@ -1106,6 +1334,34 @@
         menu.classList.add('open');
         overlay.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('mobile-overlay');
+      menu.classList.remove('open');
+      overlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Scroll Reveal Observer
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      updatePageIndicator();
+    });
+  </script>
+
+</body>
+</html>verflow = 'hidden';
       }
     }
 
