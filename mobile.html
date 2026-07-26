@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#120E0B" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="AyO MeD crêpe — L'expérience Gourmande & Créative sur Mobile 📱 Crêpes, Pâtisserie, Tiramisu & Boissons d'Exception." />
+  <meta name="description" content="AyO MeD crêpe — L'expérience Gastronomique & Créative sur Mobile 📱 Crêpes, Pâtisserie, Tiramisu & Boissons d'Exception." />
   <title>AyO MeD crêpe | L'Application Gastronomique Mobile 📱</title>
 
   <!-- Favicon & Brand Icons -->
@@ -41,12 +41,14 @@
           animation: {
             'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'float-slow': 'floatSlow 4s ease-in-out infinite',
-            'slide-up':   'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both',
+            'slide-up':   'slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both',
+            'toast-pop':  'toastPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) both',
           },
           keyframes: {
             pulseGlow: { '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 10px rgba(212,175,55,0.6))' }, '50%': { opacity: 0.7, filter: 'drop-shadow(0 0 4px rgba(212,175,55,0.2))' } },
             floatSlow: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
-            slideUp:   { '0%': { transform: 'translateY(100%)' }, '100%': { transform: 'translateY(0)' } }
+            slideUp:   { '0%': { transform: 'translateY(100%)' }, '100%': { transform: 'translateY(0)' } },
+            toastPop:  { '0%': { opacity: 0, transform: 'translate(-50%, -20px) scale(0.9)' }, '100%': { opacity: 1, transform: 'translate(-50%, 0) scale(1)' } }
           }
         }
       }
@@ -61,7 +63,7 @@
       color: #FDF7EE;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
-      padding-bottom: 90px;
+      padding-bottom: 95px;
     }
 
     .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -83,9 +85,9 @@
 
     /* Glassmorphism Luxury Container */
     .glass-luxury {
-      background: rgba(31, 24, 19, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(31, 24, 19, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(212, 175, 55, 0.25);
     }
 
@@ -93,10 +95,11 @@
       background: linear-gradient(145deg, rgba(37, 29, 23, 0.95), rgba(22, 17, 13, 0.95));
       border: 1px solid rgba(212, 175, 55, 0.18);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
     .glass-card:active {
       transform: scale(0.97);
-      border-color: rgba(212, 175, 55, 0.5);
+      border-color: rgba(212, 175, 55, 0.6);
     }
 
     /* Horizontal snap reel */
@@ -109,7 +112,7 @@
 
     /* Mobile Bottom Navigation Bar */
     .bottom-app-bar {
-      background: rgba(18, 14, 11, 0.95);
+      background: rgba(18, 14, 11, 0.96);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border-top: 1px solid rgba(212, 175, 55, 0.3);
@@ -167,6 +170,12 @@
 
 <body class="bg-charcoal text-cream antialiased select-none">
 
+  <!-- ══ FLOATING iOS TOAST NOTIFICATION ══ -->
+  <div id="toast-notification" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden bg-gold text-charcoal font-black text-xs px-5 py-3 rounded-full shadow-2xl border border-white/40 flex items-center gap-2 animate-toast-pop">
+    <span class="text-base">✨</span>
+    <span id="toast-message">Article ajouté au panier !</span>
+  </div>
+
   <!-- ══ STATUS & LIVE HEADER ══ -->
   <header class="sticky top-0 z-40 bg-charcoal/90 backdrop-blur-xl border-b border-gold/20 px-4 py-2.5 flex items-center justify-between shadow-xl">
     
@@ -188,7 +197,7 @@
       </div>
     </div>
 
-    <!-- Quick Call & Mode Switcher Button -->
+    <!-- Quick Call & WhatsApp Buttons -->
     <div class="flex items-center gap-2">
       <a href="tel:0608151534" aria-label="Appeler"
          class="w-9 h-9 rounded-full bg-gold/15 border border-gold/40 text-gold flex items-center justify-center text-sm shadow-md active:scale-95 transition-transform">
@@ -350,7 +359,7 @@
 
     <!-- CATEGORY FILTER CHIPS -->
     <div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
-      <button class="mob-cat-btn active bg-gold text-charcoal font-black text-xs px-4 py-2.5 rounded-2xl shrink-0 shadow-md" onclick="filterMobCat('all', this)">✨ Tous les Plats</button>
+      <button class="mob-cat-btn active bg-gold text-charcoal font-black text-xs px-4 py-2.5 rounded-2xl shrink-0 shadow-md" onclick="filterMobCat('all', this)">✨ Tous les Plats (50+)</button>
       <button class="mob-cat-btn bg-charcoal-mid border border-white/10 text-cream/70 font-bold text-xs px-4 py-2.5 rounded-2xl shrink-0" onclick="filterMobCat('crepe-salee', this)">🍳 Crêpes Salées</button>
       <button class="mob-cat-btn bg-charcoal-mid border border-white/10 text-cream/70 font-bold text-xs px-4 py-2.5 rounded-2xl shrink-0" onclick="filterMobCat('crepe-sucree', this)">🍫 Crêpes Sucrées</button>
       <button class="mob-cat-btn bg-charcoal-mid border border-white/10 text-cream/70 font-bold text-xs px-4 py-2.5 rounded-2xl shrink-0" onclick="filterMobCat('dessert', this)">🍰 Desserts</button>
@@ -362,18 +371,18 @@
     <div id="mob-items-list" class="space-y-3">
 
       <!-- 🍳 CRÊPES SALÉES -->
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-salee" data-name="Végétarien">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-salee" data-name="Végétarien" onclick="openDishDetail('Végétarien', 25, 'Légumes frais saisis, fromage & herbes de Provence.', '🍳 Salée')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">Végétarien 🍳</h4>
             <span class="text-gold text-xs font-black">25 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-0.5">Légumes frais saisis, fromage & herbes de Provence</p>
+          <p class="text-cream/50 text-[11px] mt-0.5">Légumes frais saisis, fromage & herbes</p>
         </div>
-        <button onclick="addToCart('Crêpe Végétarien', 25)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('Crêpe Végétarien', 25)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-salee" data-name="La Queen">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-salee" data-name="La Queen" onclick="openDishDetail('La Queen', 30, 'Jambon de dinde, fromage fondu & champignon.', '👑 Royale')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">La Queen 👑</h4>
@@ -381,10 +390,10 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Jambon de dinde, fromage fondu & champignon</p>
         </div>
-        <button onclick="addToCart('La Queen', 30)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('La Queen', 30)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-salee" data-name="4 Fromages">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-salee" data-name="4 Fromages" onclick="openDishDetail('4 Fromages', 35, 'Mozzarella, cheddar, emmental & fromage bleu.', '🧀 Fromage')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">4 Fromages 🧀</h4>
@@ -392,10 +401,10 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Mozzarella, cheddar, emmental & fromage bleu</p>
         </div>
-        <button onclick="addToCart('4 Fromages', 35)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('4 Fromages', 35)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card border-gold/50" data-cat="crepe-salee" data-name="Ayo Med Signature">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card border-gold/50" data-cat="crepe-salee" data-name="Ayo Med Signature" onclick="openDishDetail('Ayo Med Signature', 45, 'Viande hachée assaisonnée, double fromage & œuf miroir.', '⭐ Signature')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">Ayo Med Signature ⭐</h4>
@@ -403,11 +412,11 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Viande hachée assaisonnée, double fromage & œuf miroir</p>
         </div>
-        <button onclick="addToCart('Ayo Med Signature', 45)" class="bg-gold text-charcoal text-xs font-black px-3.5 py-2 rounded-xl shrink-0 shadow-md">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('Ayo Med Signature', 45)" class="bg-gold text-charcoal text-xs font-black px-3.5 py-2 rounded-xl shrink-0 shadow-md">+ Ajouter</button>
       </div>
 
       <!-- 🍫 CRÊPES SUCRÉES -->
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-sucree" data-name="Nutella Banane">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-sucree" data-name="Nutella Banane" onclick="openDishDetail('Nutella Banane', 25, 'Nutella crémeux généreux & bananes fraîches.', '🍌 Gourmand')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">Nutella Banane 🍌</h4>
@@ -415,21 +424,21 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Nutella crémeux généreux & bananes fraîches</p>
         </div>
-        <button onclick="addToCart('Nutella Banane', 25)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('Nutella Banane', 25)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-sucree" data-name="Kunafa Nutella Pistache">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-sucree" data-name="Kunafa Nutella Pistache" onclick="openDishDetail('Kunafa Nutella Pistache', 30, 'Kunafa croustillante, Nutella & éclats de pistaches.', '🍫 Croustillant')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">Kunafa Nutella Pistache 🍫</h4>
             <span class="text-gold text-xs font-black">30 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-0.5">Kunafa croustillante, Nutella & éclats de pistaches</p>
+          <p class="text-cream/50 text-[11px] mt-0.5">Kunafa croustillante, Nutella & pistaches</p>
         </div>
-        <button onclick="addToCart('Kunafa Nutella Pistache', 30)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('Kunafa Nutella Pistache', 30)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-sucree" data-name="Dubai Special">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-sucree" data-name="Dubai Special" onclick="openDishDetail('Dubai Special', 35, 'Crème pistache orientale, kunafa & chocolat d\'exception.', '🌴 Spécial')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">Dubai Special 🌴</h4>
@@ -437,10 +446,10 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Pistache orientale, kunafa & chocolat d'exception</p>
         </div>
-        <button onclick="addToCart('Dubai Special', 35)" class="bg-gold text-charcoal text-xs font-black px-3.5 py-2 rounded-xl shrink-0 shadow-md">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('Dubai Special', 35)" class="bg-gold text-charcoal text-xs font-black px-3.5 py-2 rounded-xl shrink-0 shadow-md">+ Ajouter</button>
       </div>
 
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-sucree" data-name="Sushi Crepe">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="crepe-sucree" data-name="Sushi Crepe" onclick="openDishDetail('Sushi Crêpe', 55, 'Rouleaux créatifs de crêpes farcis au chocolat premium.', '🍣 Créatif')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">Sushi Crêpe 🍣</h4>
@@ -448,11 +457,11 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Rouleaux créatifs de crêpes farcis au chocolat</p>
         </div>
-        <button onclick="addToCart('Sushi Crêpe', 55)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('Sushi Crêpe', 55)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
       <!-- 🍰 DESSERTS & CHEESECAKE -->
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="dessert" data-name="Cheesecake Lotus">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="dessert" data-name="Cheesecake Lotus" onclick="openDishDetail('Cheesecake Lotus', 15, 'Biscuit Spéculoos & crème fondante.', '🍰 Dessert')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">Cheesecake Lotus 🍰</h4>
@@ -460,10 +469,10 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Biscuit Spéculoos & crème fondante</p>
         </div>
-        <button onclick="addToCart('Cheesecake Lotus', 15)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('Cheesecake Lotus', 15)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="dessert" data-name="Tiramisu Kinder Bueno">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="dessert" data-name="Tiramisu Kinder Bueno" onclick="openDishDetail('Tiramisu Kinder Bueno', 25, 'Fait maison au Kinder & noisettes.', '🍮 Tiramisu')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">Tiramisu Kinder Bueno 🍮</h4>
@@ -471,11 +480,11 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Fait maison au Kinder & noisettes</p>
         </div>
-        <button onclick="addToCart('Tiramisu Kinder Bueno', 25)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('Tiramisu Kinder Bueno', 25)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
       <!-- 🍪 PÂTISSERIE -->
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="patisserie" data-name="San Sebastian Pistache">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="patisserie" data-name="San Sebastian Pistache" onclick="openDishDetail('San Sebastian Pistache', 25, 'Gâteau basque caramélisé nappé de pistache.', '🍪 Basque')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">San Sebastian Pistache 🍪</h4>
@@ -483,11 +492,11 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Gâteau basque caramélisé nappé de pistache</p>
         </div>
-        <button onclick="addToCart('San Sebastian Pistache', 25)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('San Sebastian Pistache', 25)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
       <!-- 🥤 BOISSONS & MOJITOS -->
-      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="boisson" data-name="Mojito Red Bull">
+      <div class="glass-card p-4 rounded-2xl flex items-center justify-between gap-3 mob-card" data-cat="boisson" data-name="Mojito Red Bull" onclick="openDishDetail('Mojito Red Bull', 35, 'Menthe fraîche, citron vert & Red Bull.', '🍹 Energy')">
         <div>
           <div class="flex items-center gap-2">
             <h4 class="font-bold text-cream text-sm">Mojito Red Bull 🍹</h4>
@@ -495,7 +504,7 @@
           </div>
           <p class="text-cream/50 text-[11px] mt-0.5">Menthe fraîche, citron vert & Red Bull</p>
         </div>
-        <button onclick="addToCart('Mojito Red Bull', 35)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
+        <button onclick="event.stopPropagation(); addToCart('Mojito Red Bull', 35)" class="bg-gold/20 hover:bg-gold text-gold hover:text-charcoal border border-gold/40 text-xs font-extrabold px-3.5 py-2 rounded-xl shrink-0 transition-all">+ Ajouter</button>
       </div>
 
     </div>
@@ -605,6 +614,38 @@
 
         <button onclick="sendCartToWhatsApp()" class="w-full bg-[#25D366] text-white font-black py-4 rounded-2xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl active:scale-98 transition-transform">
           <span>🛵 Valider & Envoyer sur WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DISH DETAIL MODAL DRAWER ══ -->
+  <div id="dish-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex flex-col justify-end">
+    <div class="glass-luxury rounded-t-3xl p-6 max-h-[80vh] flex flex-col justify-between shadow-2xl animate-slide-up">
+      <div class="space-y-4">
+        <div class="flex justify-between items-start">
+          <div>
+            <span id="dish-modal-badge" class="inline-block bg-gold/20 text-gold text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase mb-1">
+              ✨ Spécialité
+            </span>
+            <h3 id="dish-modal-title" class="font-black text-cream text-2xl font-serif">Titre Du Plat</h3>
+          </div>
+          <button onclick="closeDishDetail()" class="text-cream/60 hover:text-gold text-2xl font-bold p-1">✕</button>
+        </div>
+
+        <p id="dish-modal-desc" class="text-cream/80 text-xs leading-relaxed">
+          Description détaillée du plat.
+        </p>
+
+        <div class="flex justify-between items-center pt-2">
+          <span class="text-xs text-cream/50">Prix unitaire:</span>
+          <span id="dish-modal-price" class="text-gold font-black text-2xl font-serif">0 DH</span>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-white/10">
+        <button id="dish-modal-add-btn" onclick="" class="w-full bg-gold text-charcoal font-black py-4 rounded-2xl text-xs uppercase tracking-wider shadow-xl active:scale-98 transition-transform flex items-center justify-center gap-2">
+          <span>+ Ajouter Au Panier</span>
         </button>
       </div>
     </div>
@@ -747,6 +788,16 @@
       }
     ];
 
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const msgEl = document.getElementById('toast-message');
+      if (toast && msgEl) {
+        msgEl.textContent = msg;
+        toast.classList.remove('hidden');
+        setTimeout(() => { toast.classList.add('hidden'); }, 2200);
+      }
+    }
+
     function renderMobBookPage() {
       const pageData = mobPagesData[currentMobPage - 1];
       document.getElementById('mob-book-page-num').textContent = pageData.num;
@@ -799,6 +850,7 @@
     function addToCart(name, price) {
       if (cart[name]) cart[name].qty += 1;
       else cart[name] = { price: price, qty: 1 };
+      showToast(`"${name}" ajouté au panier !`);
       updateCartUI();
     }
 
@@ -883,6 +935,26 @@
       window.open(`https://wa.me/212608151534?text=${encodeURIComponent(text)}`, '_blank');
     }
 
+    // DISH DETAIL MODAL
+    function openDishDetail(name, price, desc, badge) {
+      document.getElementById('dish-modal-title').textContent = name;
+      document.getElementById('dish-modal-price').textContent = `${price} DH`;
+      document.getElementById('dish-modal-desc').textContent = desc;
+      document.getElementById('dish-modal-badge').textContent = badge || '✨ Spécialité';
+      
+      const btn = document.getElementById('dish-modal-add-btn');
+      btn.onclick = function() {
+        addToCart(name, price);
+        closeDishDetail();
+      };
+
+      document.getElementById('dish-modal').classList.remove('hidden');
+    }
+
+    function closeDishDetail() {
+      document.getElementById('dish-modal').classList.add('hidden');
+    }
+
     // SEARCH & FILTERS
     function filterMobMenu() {
       const q = document.getElementById('mob-search').value.toLowerCase().trim();
@@ -919,7 +991,7 @@
 
     // STORY MODAL SYSTEM
     const storiesData = [
-      { badge: "⭐ Spécialité Du Chef", title: "Ayo Med Signature", desc: "Viande hachée assaisonnée, double fromage fondu & œuf miroir.", price: "45 DH" },
+      { badge: "⭐ Spécialité Du Chef", title: "Ayo Med Signature", desc: "Viande hachée assaisonnée, double fromage fondant & œuf miroir.", price: "45 DH" },
       { badge: "🍫 Crêpe Sucrée", title: "Kunafa Nutella Pistache", desc: "Kunafa croustillante, Nutella crémeux & éclats de pistaches.", price: "30 DH" },
       { badge: "🍰 Dessert Maison", title: "San Sebastian Pistache", desc: "Gâteau au fromage basque caramélisé nappé de crème pistache.", price: "25 DH" },
       { badge: "🍹 Cocktail Glacé", title: "Mojito Red Bull", desc: "Menthe fraîche, citron vert glacé & Red Bull énergisant.", price: "35 DH" }
