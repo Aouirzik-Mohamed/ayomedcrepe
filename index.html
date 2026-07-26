@@ -267,6 +267,46 @@
       box-shadow: 0 4px 15px rgba(201, 151, 58, 0.4);
     }
 
+    /* Gold Corner Ornaments for Luxury Book Pages */
+    .corner-ornament {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-top: 2px solid rgba(201, 151, 58, 0.45);
+      border-left: 2px solid rgba(201, 151, 58, 0.45);
+      top: 10px;
+      left: 10px;
+      pointer-events: none;
+      border-top-left-radius: 2px;
+    }
+    .corner-tr { left: auto; right: 10px; border-left: none; border-right: 2px solid rgba(201, 151, 58, 0.45); border-top-right-radius: 2px; }
+    .corner-bl { top: auto; bottom: 10px; border-top: none; border-bottom: 2px solid rgba(201, 151, 58, 0.45); border-bottom-left-radius: 2px; }
+    .corner-br { top: auto; left: auto; bottom: 10px; right: 10px; border-top: none; border-left: none; border-bottom: 2px solid rgba(201, 151, 58, 0.45); border-right: 2px solid rgba(201, 151, 58, 0.45); border-bottom-right-radius: 2px; }
+
+    /* Dual Mode Switcher Buttons */
+    .view-switch-btn {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .view-switch-btn.active {
+      background: linear-gradient(135deg, #C9973A, #E8B84B);
+      color: #1A1610;
+      font-weight: 800;
+      box-shadow: 0 4px 18px rgba(201, 151, 58, 0.4);
+    }
+
+    /* Carte Visuelle Cards */
+    .visual-menu-card {
+      background: #1E1A14;
+      background-image: radial-gradient(circle at 50% 0%, rgba(45, 36, 25, 0.4) 0%, rgba(20, 16, 12, 0.9) 100%);
+      border: 1px solid rgba(201, 151, 58, 0.2);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .visual-menu-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(201, 151, 58, 0.5);
+      box-shadow: 0 15px 35px rgba(201, 151, 58, 0.15);
+    }
+
     /* ════════════ MOBILE RESPONSIVE TWEAKS ════════════ */
     @media (max-width: 640px) {
       .section-script-title {
@@ -478,11 +518,20 @@
   <!-- ══ INTERACTIVE BOOK MENU SECTION ══ -->
   <section id="menu" class="py-20 px-3 sm:px-6 max-w-7xl mx-auto">
 
-    <div class="text-center mb-10 reveal">
-      <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">✨ Le Véritable Carte Du Restaurant ✨</p>
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-cream font-serif">Le Livre de Menu</h2>
-      <div class="gold-divider w-28 mx-auto mt-4 mb-3"></div>
-      <p class="text-cream/60 text-base max-w-md mx-auto">Parcourez les pages de notre carte officielle 📖</p>
+    <div class="text-center mb-8 reveal">
+      <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">✨ Gastronomie & Gourmandise ✨</p>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-cream font-serif">La Carte AyO MeD</h2>
+      <div class="gold-divider w-28 mx-auto mt-4 mb-4"></div>
+      
+      <!-- Dual Mode Switcher Bar -->
+      <div class="inline-flex p-1.5 rounded-full bg-charcoal-mid border border-gold/30 shadow-xl gap-2 mt-2">
+        <button id="view-mode-book" onclick="setMenuMode('book')" class="view-switch-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold flex items-center gap-2">
+          <span>📖 Mode Livre Luxury</span>
+        </button>
+        <button id="view-mode-grid" onclick="setMenuMode('grid')" class="view-switch-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-cream/70 hover:text-gold flex items-center gap-2">
+          <span>🍽️ Carte Visuelle & Recherche</span>
+        </button>
+      </div>
     </div>
 
     <!-- Chapter Navigation Tabs -->
