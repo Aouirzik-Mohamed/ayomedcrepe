@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AyO MeD crêpe — Où la haute qualité rencontre une saveur d'exception 🍽️ Consultez notre livre de menu interactif. Crêpes, Pâtisserie, Tiramisu, Milkshakes & Drinks." />
+  <title>AyO MeD crêpe | Menu Officiel & Crêperie Gourmande (@ayomedcrepe)</title>
+
+  <!-- Preload LCP hero image -->
+  <link rel="preload" as="image" href="images/hero.png" fetchpriority="high" />
+
+  <!-- Google Fonts: Plus Jakarta Sans + Playfair Display + Great Vibes (Script for Menu Headers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+            script: ['Great Vibes', 'cursive'],
+          },
+          colors: {
+            gold:   { DEFAULT: '#C9973A', light: '#E8B84B', dark: '#9B6F22' },
+            cream:  { DEFAULT: '#FDF6EC', dark: '#F5E8D0' },
+            charcoal:{ DEFAULT: '#1A1610', mid: '#2D2419', light: '#3D3020' },
+          },
+          backgroundImage: {
+            'hero-gradient': 'linear-gradient(to bottom, rgba(26,22,16,0.65) 0%, rgba(26,22,16,0.30) 40%, rgba(26,22,16,0.92) 100%)',
+          },
+          keyframes: {
+            fadeUp:    { '0%': { opacity: '0', transform: 'translateY(24px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            scaleIn:   { '0%': { opacity: '0', transform: 'scale(0.94)' },      '100%': { opacity: '1', transform: 'scale(1)' } },
+            slideDown: { '0%': { opacity: '0', transform: 'translateY(-16px)' },'100%': { opacity: '1', transform: 'translateY(0)' } },
+          },
+          animation: {
+            'fade-up':    'fadeUp 0.7s ease both',
+            'scale-in':   'scaleIn 0.5s ease both',
+            'slide-down': 'slideDown 0.35s ease both',
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #1A1610;
+      color: #FDF6EC;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1A1610; }
+    ::-webkit-scrollbar-thumb { background: #C9973A; border-radius: 3px; }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Glass Navigation */
+    .glass-nav {
+      background: rgba(26, 22, 16, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(201, 151, 58, 0.18);
+    }
+
+    /* Mobile menu drawer */
+    #mobile-menu {
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      transform: translateX(-100%);
+      opacity: 0;
+      max-width: 85vw;
+    }
+    #mobile-menu.open {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    /* Instagram Gradient Border */
+    .ig-border {
+      border: 2px solid transparent;
+      background: linear-gradient(#2D2419,#2D2419) padding-box,
+                  linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888) border-box;
+    }
+
+    /* Hashtag Badge */
+    .hashtag {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(201,151,58,0.25);
+      color: #E8B84B;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    /* Scooter animation */
+    @keyframes scooter {
+      0%   { transform: translateX(0); }
+      50%  { transform: translateX(6px); }
+      100% { transform: translateX(0); }
+    }
+    .scooter-anim { animation: scooter 1.8s ease-in-out infinite; }
+
+    /* Intersection observer reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       BOOK MENU STYLING (MATCHING THE ORIGINAL INSTAGRAM MENU)
+       ═══════════════════════════════════════════════════ */
+    .book-wrapper {
+      perspective: 2000px;
+    }
+
+    .menu-book {
+      background-color: #181512;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(35, 29, 22, 0.8) 0%, rgba(20, 16, 12, 0.95) 100%),
+        repeating-linear-gradient(45deg, rgba(201, 151, 58, 0.015) 0, rgba(201, 151, 58, 0.015) 1px, transparent 0, transparent 50px);
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(201, 151, 58, 0.25),
+        inset 0 0 100px rgba(0,0,0,0.8);
+      border-radius: 16px;
+      position: relative;
+    }
+
+    /* Spine effect in center of open book */
+    .book-spine {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 24px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, 
+        rgba(0,0,0,0.5) 0%, 
+        rgba(0,0,0,0.85) 30%, 
+        rgba(201, 151, 58, 0.2) 50%, 
+        rgba(0,0,0,0.85) 70%, 
+        rgba(0,0,0,0.5) 100%);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Individual Book Page */
+    .book-page {
+      background: #1C1915;
+      background-image: radial-gradient(circle at 50% 50%, rgba(45, 36, 25, 0.3) 0%, rgba(22, 18, 14, 0.8) 100%);
+      border: 1px solid rgba(201, 151, 58, 0.2);
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-page::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(201, 151, 58, 0.15);
+      pointer-events: none;
+      border-radius: 4px;
+    }
+
+    /* Dotted leader between item and price */
+    .menu-item-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+      transition: color 0.2s ease;
+    }
+    .menu-item-row:hover {
+      color: #E8B84B;
+    }
+    .menu-item-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .menu-item-dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(201, 151, 58, 0.35);
+      margin: 0 8px;
+      position: relative;
+      top: -3px;
+    }
+    .menu-item-price {
+      font-weight: 700;
+      color: #E8B84B;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Decorative Header with Flourishes */
+    .section-script-title {
+      font-family: 'Great Vibes', cursive;
+      color: #FDF6EC;
+      font-size: 2.3rem;
+      text-align: center;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-shadow: 0 2px 10px rgba(201, 151, 58, 0.25);
+    }
+    .section-script-title::before,
+    .section-script-title::after {
+      content: '—';
+      color: #C9973A;
+      font-family: serif;
+      font-size: 1.4rem;
+      opacity: 0.8;
+    }
+
+    /* Navigation Book Tabs */
+    .book-tab-btn {
+      background: rgba(30, 25, 20, 0.85);
+      border: 1px solid rgba(201, 151, 58, 0.25);
+      color: rgba(253, 246, 236, 0.75);
+      padding: 0.6rem 1.25rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .book-tab-btn:hover, .book-tab-btn.active {
+      background: linear-gradient(135deg, #C9973A, #9B6F22);
+      color: #1A1610;
+      border-color: #E8B84B;
+      box-shadow: 0 4px 15px rgba(201, 151, 58, 0.4);
+    }
+
+    /* ════════════ MOBILE RESPONSIVE TWEAKS ════════════ */
+    @media (max-width: 640px) {
+      .section-script-title {
+        font-size: 1.85rem;
+        margin-bottom: 0.85rem;
+      }
+      .menu-item-name {
+        font-size: 0.86rem;
+        white-space: normal;
+        word-break: break-word;
+      }
+      .menu-item-price {
+        font-size: 0.88rem;
+      }
+      .menu-item-dots {
+        margin: 0 4px;
+        min-width: 10px;
+      }
+      .menu-book {
+        padding: 0.75rem !important;
+        border-radius: 12px;
+      }
+      .book-page {
+        padding: 1.25rem 1rem !important;
+        border-radius: 10px;
+      }
+      .book-tab-btn {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.78rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-charcoal text-cream antialiased">
+
+  <!-- ══ NAVIGATION ══ -->
+  <header id="navbar" class="glass-nav fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+
+      <!-- Logo -->
+      <a href="#hero" id="nav-logo" class="flex items-center gap-3 group">
+        <img src="images/logo.png" alt="AyO MeD crêpe Logo"
+             class="w-10 h-10 rounded-full object-cover ig-border group-hover:scale-105 transition-transform"
+             width="40" height="40" />
+        <div class="leading-tight">
+          <span class="block text-base font-black text-cream tracking-tight font-serif">AyO MeD <em class="text-gold not-italic">crêpe</em></span>
+          <span class="block text-[10px] text-cream/50 tracking-widest uppercase font-semibold">@ayomedcrepe</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold">
+        <a href="#menu" class="text-cream/80 hover:text-gold transition-colors">Le Menu Livre</a>
+        <a href="#about" class="text-cream/80 hover:text-gold transition-colors">À Propos</a>
+        <a href="#contact" class="text-cream/80 hover:text-gold transition-colors">Contact & Accès</a>
+        <a href="https://www.instagram.com/ayomedcrepe/" target="_blank" rel="noopener" id="nav-ig-btn"
+           class="flex items-center gap-1.5 text-cream/70 hover:text-pink-400 transition-colors">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+        <a href="https://wa.me/212600000000?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20passer%20une%20commande%20%F0%9F%A4%A4"
+           target="_blank" rel="noopener" id="nav-order-btn"
+           class="bg-gradient-to-r from-gold to-gold-light text-charcoal px-5 py-2 rounded-full text-xs uppercase tracking-wider font-extrabold hover:opacity-90 transition-opacity shadow-md shadow-gold/20">
+          Commander
+        </a>
+      </nav>
+
+      <!-- Hamburger button -->
+      <button id="hamburger" aria-label="Ouvrir le menu" onclick="toggleMobileMenu()"
+              class="md:hidden flex flex-col gap-1.5 p-2 group focus:outline-none">
+        <span class="hamburger-line w-6 h-0.5 bg-cream rounded-full transition-all duration-300"></span>
+        <span class="hamburger-line w-6 h-0.5 bg-cream rounded-full transition-all duration-300"></span>
+        <span class="hamburger-line w-4 h-0.5 bg-gold rounded-full transition-all duration-300 group-hover:w-6"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay & Drawer -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-black/70 z-40 hidden backdrop-blur-sm"
+       onclick="closeMobileMenu()"></div>
+  <nav id="mobile-menu"
+       class="fixed top-0 left-0 bottom-0 w-72 z-50 flex flex-col pt-16 pb-8 px-6 gap-2"
+       style="background:rgba(20,18,16,0.98);border-right:1px solid rgba(201,151,58,0.2)">
+    <button onclick="closeMobileMenu()" aria-label="Fermer"
+            class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-cream/60 hover:text-gold text-xl font-bold">✕</button>
+
+    <!-- Profile card in drawer -->
+    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+      <img src="images/logo.png" alt="logo" class="w-12 h-12 rounded-full object-cover ig-border" width="48" height="48" />
+      <div>
+        <p class="font-extrabold text-cream text-base font-serif">AyO MeD <span class="text-gold">crêpe</span></p>
+        <p class="text-cream/50 text-xs">@ayomedcrepe · 1.6K Abonnés</p>
+      </div>
+    </div>
+
+    <a href="#menu" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-gold/10 hover:text-gold text-cream font-semibold transition-colors">📖 Le Menu Livre</a>
+    <a href="#about" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-gold/10 hover:text-gold text-cream font-semibold transition-colors">✨ À Propos de nous</a>
+    <a href="#contact" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-gold/10 hover:text-gold text-cream font-semibold transition-colors">📍 Contact & Accès</a>
+    <a href="https://www.instagram.com/ayomedcrepe/" target="_blank" rel="noopener" onclick="closeMobileMenu()" class="py-2.5 px-3 rounded-xl hover:bg-gold/10 hover:text-pink-400 text-cream font-semibold transition-colors">📸 Instagram Page</a>
+
+    <div class="mt-auto space-y-3">
+      <div class="flex items-center gap-3 bg-gold/10 border border-gold/25 rounded-2xl px-4 py-3">
+        <span class="text-2xl scooter-anim">🛵</span>
+        <div>
+          <p class="text-gold font-bold text-xs">Livraison à domicile</p>
+          <p class="text-cream/60 text-[11px]">Directement chez vous</p>
+        </div>
+      </div>
+      <a href="https://wa.me/212600000000?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20passer%20une%20commande%20%F0%9F%A4%A4"
+         target="_blank" rel="noopener" id="mob-order-btn"
+         class="flex items-center justify-center gap-2 bg-[#25D366] text-white font-extrabold py-3.5 rounded-2xl text-sm hover:bg-[#20BF5C] transition-colors shadow-lg">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.127 1.535 5.855L.057 23.52a.5.5 0 0 0 .614.614l5.666-1.478A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 0 1-5.002-1.367l-.36-.213-3.724.97.99-3.614-.234-.373A9.818 9.818 0 1 1 12 21.818z"/></svg>
+        Commander via WhatsApp
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══ HERO SECTION ══ -->
+  <section id="hero" class="relative min-h-[100dvh] flex items-end overflow-hidden">
+
+    <!-- Background image -->
+    <div class="absolute inset-0">
+      <img src="images/hero.png"
+           alt="AyO MeD crêpe ambiance"
+           fetchpriority="high"
+           class="hero-img w-full h-full object-cover object-center scale-105"
+           width="1280" height="720" />
+      <div class="absolute inset-0 bg-hero-gradient"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-5 pb-16 pt-28">
+      <div class="animate-fade-up">
+
+        <!-- Brand Identity Badge -->
+        <div class="inline-flex items-center gap-2.5 mb-5 bg-white/10 backdrop-blur-md border border-white/15 rounded-full px-4 py-2 shadow-xl">
+          <img src="images/logo.png" alt="logo" class="w-7 h-7 rounded-full object-cover ig-border" width="28" height="28" />
+          <span class="text-cream/90 text-xs font-bold tracking-wide">@ayomedcrepe</span>
+          <span class="text-cream/40">·</span>
+          <span class="text-gold text-xs font-bold">✨ 1.6K+ Abonnés</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-black leading-tight mb-4 text-cream tracking-tight">
+          AyO MeD<br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold via-gold-light to-gold font-serif italic">crêpe</span>
+        </h1>
+
+        <p class="text-cream/90 text-lg sm:text-xl font-medium max-w-xl mb-3 leading-relaxed">
+          Où la haute qualité rencontre une saveur d'exception 🍽️
+        </p>
+        <p class="text-cream/70 text-sm sm:text-base max-w-lg mb-6 leading-relaxed">
+          Feuilletez notre Livre de Menu officiel et découvrez nos délicieuses crêpes, pâtisseries et boissons rafraîchissantes ❤️
+        </p>
+
+        <!-- Hashtags -->
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="hashtag">#ayomedcrepe</span>
+          <span class="hashtag">#crepessucrees</span>
+          <span class="hashtag">#crepessalees</span>
+          <span class="hashtag">#menu_livre</span>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <a href="#menu" id="hero-menu-btn"
+             class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gold to-gold-light text-charcoal font-extrabold px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm sm:text-base hover:scale-105 transition-transform shadow-xl shadow-gold/30 w-full sm:w-auto">
+            <span>Feuilleter le Menu</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </a>
+
+          <a href="https://wa.me/212600000000?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20passer%20une%20commande%20%F0%9F%A4%A4"
+             target="_blank" rel="noopener" id="hero-wa-btn"
+             class="inline-flex items-center justify-center gap-2.5 bg-[#25D366]/20 border border-[#25D366]/50 text-cream font-bold px-7 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm sm:text-base hover:bg-[#25D366]/35 transition-colors backdrop-blur-md w-full sm:w-auto">
+            <svg class="w-5 h-5 fill-[#25D366]" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.127 1.535 5.855L.057 23.52a.5.5 0 0 0 .614.614l5.666-1.478A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 0 1-5.002-1.367l-.36-.213-3.724.97.99-3.614-.234-.373A9.818 9.818 0 1 1 12 21.818z"/></svg>
+            <span>Commander sur WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Real Instagram Statistics Cards -->
+      <div class="mt-12 grid grid-cols-3 gap-3 max-w-md">
+        <div class="text-center bg-white/10 backdrop-blur-md rounded-2xl py-3.5 px-3 border border-white/15 shadow-lg">
+          <p class="text-gold font-extrabold text-2xl">1.6K+</p>
+          <p class="text-cream/70 text-xs font-semibold mt-0.5">Abonnés IG</p>
+        </div>
+        <div class="text-center bg-white/10 backdrop-blur-md rounded-2xl py-3.5 px-3 border border-white/15 shadow-lg">
+          <p class="text-gold font-extrabold text-2xl">63</p>
+          <p class="text-cream/70 text-xs font-semibold mt-0.5">Publications</p>
+        </div>
+        <div class="text-center bg-white/10 backdrop-blur-md rounded-2xl py-3.5 px-3 border border-white/15 shadow-lg">
+          <p class="text-gold font-extrabold text-2xl">🛵</p>
+          <p class="text-cream/70 text-xs font-semibold mt-0.5">Livraison Rapide</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DELIVERY BANNER ══ -->
+  <div class="bg-gradient-to-r from-[#9B6F22] via-[#C9973A] to-[#E8B84B] py-3.5 px-5 text-center overflow-hidden shadow-xl">
+    <div class="flex items-center justify-center gap-3 text-[#141210] font-extrabold text-sm sm:text-base">
+      <span class="scooter-anim text-xl">🛵</span>
+      <span>Livraison disponible directement chez vous !</span>
+      <span class="hidden md:inline">— Commandez sur WhatsApp pour une livraison rapide</span>
+      <span class="scooter-anim text-xl" style="animation-delay:0.9s">🛵</span>
+    </div>
+  </div>
+
+  <!-- ══ INTERACTIVE BOOK MENU SECTION ══ -->
+  <section id="menu" class="py-20 px-3 sm:px-6 max-w-7xl mx-auto">
+
+    <div class="text-center mb-10 reveal">
+      <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">✨ Le Véritable Carte Du Restaurant ✨</p>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-cream font-serif">Le Livre de Menu</h2>
+      <div class="gold-divider w-28 mx-auto mt-4 mb-3"></div>
+      <p class="text-cream/60 text-base max-w-md mx-auto">Parcourez les pages de notre carte officielle 📖</p>
+    </div>
+
+    <!-- Chapter Navigation Tabs -->
+    <div class="flex gap-2 sm:gap-3 overflow-x-auto pb-2 px-1 no-scrollbar justify-start sm:justify-center mb-8 reveal">
+      <button class="book-tab-btn active" onclick="goToSpread(1, this)">
+        🥞 1. Les Crêpes
+      </button>
+      <button class="book-tab-btn" onclick="goToSpread(2, this)">
+        🍰 2. Pâtisserie & Desserts
+      </button>
+      <button class="book-tab-btn" onclick="goToSpread(3, this)">
+        🥤 3. Shakes, Cafés & Juices
+      </button>
+      <button class="book-tab-btn" onclick="goToSpread(4, this)">
+        🍹 4. Special Drinks
+      </button>
+    </div>
+
+    <!-- THE BOOK CONTAINER -->
+    <div class="book-wrapper reveal">
+      <div class="menu-book max-w-5xl mx-auto p-4 sm:p-8 border border-gold/30 rounded-2xl relative shadow-2xl">
+        
+        <!-- Spine (Visible on Desktop) -->
+        <div class="book-spine hidden md:block"></div>
+
+        <!-- ════════════ SPREAD 1: LES CRÊPES ════════════ -->
+        <div id="spread-1" class="spread-content grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 relative z-10">
+
+          <!-- Left Page: Crêpes Salées -->
+          <div class="book-page p-6 sm:p-8 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="text-center mb-4">
+                <span class="text-xs text-gold tracking-widest uppercase font-semibold">Page 1</span>
+                <h3 class="section-script-title">Crêpes Salées</h3>
+              </div>
+
+              <div class="space-y-3">
+                <div class="menu-item-row"><span class="menu-item-name">Végétarien</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">La Queen</span><span class="menu-item-dots"></span><span class="menu-item-price">30 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">4 Fromages</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Lathon</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Switzerland</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">La Mexicaine</span><span class="menu-item-dots"></span><span class="menu-item-price">40 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Ayo Med</span><span class="menu-item-dots"></span><span class="menu-item-price">45 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Asiatique</span><span class="menu-item-dots"></span><span class="menu-item-price">55 dh</span></div>
+              </div>
+            </div>
+
+            <!-- Image Thumbnail Banner -->
+            <div class="mt-6 pt-4 border-t border-gold/20 flex items-center gap-3">
+              <img src="images/savory-crepe.png" alt="Crêpe Salée" class="w-16 h-16 rounded-lg object-cover border border-gold/40 shadow-md" />
+              <div>
+                <p class="text-xs font-bold text-cream">Nos Crêpes Salées 🍳</p>
+                <p class="text-[11px] text-cream/50">Préparées à la minute avec des ingrédients frais.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Page: Crêpes Sucrées -->
+          <div class="book-page p-6 sm:p-8 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="text-center mb-4">
+                <span class="text-xs text-gold tracking-widest uppercase font-semibold">Page 2</span>
+                <h3 class="section-script-title">Crêpes Sucrées</h3>
+              </div>
+
+              <div class="space-y-2 text-sm">
+                <div class="menu-item-row"><span class="menu-item-name">Caramel</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Miel</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Nuttela</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Nuttela Banane</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Oreo</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Snickers</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Maroja</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Framboise</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">El Mordjene</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Kinder Bueno</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Kunafa Nuttela Pistache</span><span class="menu-item-dots"></span><span class="menu-item-price">30 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Brésilien</span><span class="menu-item-dots"></span><span class="menu-item-price">30 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Raffaelo</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Kunafa Pistache</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Hawaï</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Brownie</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Dubai</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Strawberry Shortcake</span><span class="menu-item-dots"></span><span class="menu-item-price">38 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Brownie Special</span><span class="menu-item-dots"></span><span class="menu-item-price">40 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Sushi</span><span class="menu-item-dots"></span><span class="menu-item-price">55 dh</span></div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-gold/20 flex items-center gap-3">
+                <img src="images/sweet-crepe.png" alt="Crêpe Sucrée" class="w-14 h-14 rounded-lg object-cover border border-gold/40 shadow-md" />
+                <div>
+                  <p class="text-xs font-bold text-cream">Crêpes Sucrées 🍫</p>
+                  <p class="text-[11px] text-cream/50">Gourmandes & ultra généreuses.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ════════════ SPREAD 2: DESSERTS & PÂTISSERIE ════════════ -->
+        <div id="spread-2" class="spread-content hidden grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 relative z-10">
+
+          <!-- Left Page: Cheesecake & Tiramisu -->
+          <div class="book-page p-6 sm:p-8 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="text-center mb-4">
+                <span class="text-xs text-gold tracking-widest uppercase font-semibold">Page 3</span>
+                <h3 class="section-script-title">Cheesecake</h3>
+              </div>
+
+              <div class="space-y-3 mb-8">
+                <div class="menu-item-row"><span class="menu-item-name">Oreo</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Lotus</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Dubai</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Raffaello</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+              </div>
+
+              <div class="text-center mb-4 pt-2 border-t border-gold/20">
+                <h3 class="section-script-title">Tiramisu</h3>
+              </div>
+
+              <div class="space-y-3">
+                <div class="menu-item-row"><span class="menu-item-name">Oreo</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Spéculoos</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Kinder Bueno</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Dubai</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Brownie</span><span class="menu-item-dots"></span><span class="menu-item-price">30 dh</span></div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-gold/20 flex items-center justify-between">
+              <span class="text-xs text-cream/40">AyO MeD Desserts</span>
+              <span class="text-xs text-gold font-bold">Fait Maison ✨</span>
+            </div>
+          </div>
+
+          <!-- Right Page: Pâtisserie & Suppléments -->
+          <div class="book-page p-6 sm:p-8 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="text-center mb-4">
+                <span class="text-xs text-gold tracking-widest uppercase font-semibold">Page 4</span>
+                <h3 class="section-script-title">Pâtisserie</h3>
+              </div>
+
+              <div class="space-y-3 mb-6">
+                <div class="menu-item-row"><span class="menu-item-name">Cookies</span><span class="menu-item-dots"></span><span class="menu-item-price">08 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Cuajada</span><span class="menu-item-dots"></span><span class="menu-item-price">10 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Panacotta</span><span class="menu-item-dots"></span><span class="menu-item-price">12 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Crème Brûlée</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">San Sebastian</span><span class="menu-item-dots"></span><span class="menu-item-price">22 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">San Sebastian Pistache</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row flex-col items-start gap-1">
+                  <div class="w-full flex justify-between items-baseline">
+                    <span class="menu-item-name">Chocolat</span><span class="menu-item-dots"></span><span class="menu-item-price">60 dh</span>
+                  </div>
+                  <span class="text-[11px] text-cream/50 italic pl-1">(Dubai, mangue, framboise, citron, orange)</span>
+                </div>
+              </div>
+
+              <div class="text-center mb-4 pt-4 border-t border-gold/20">
+                <h3 class="section-script-title">Suppléments</h3>
+              </div>
+
+              <div class="space-y-3">
+                <div class="menu-item-row"><span class="menu-item-name">Nuttela</span><span class="menu-item-dots"></span><span class="menu-item-price">10 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Pistache</span><span class="menu-item-dots"></span><span class="menu-item-price">10 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">El Mordjene</span><span class="menu-item-dots"></span><span class="menu-item-price">10 dh</span></div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-gold/20 text-center">
+              <p class="text-xs text-gold/80 italic">Ajoutez votre touche de gourmandise préférée 🍫</p>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ════════════ SPREAD 3: MILK-SHAKES, ICE COFFEE & JUICES ════════════ -->
+        <div id="spread-3" class="spread-content hidden grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 relative z-10">
+
+          <!-- Left Page: Milk-Shake & Ice Coffee -->
+          <div class="book-page p-6 sm:p-8 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="text-center mb-3">
+                <span class="text-xs text-gold tracking-widest uppercase font-semibold">Page 5</span>
+                <h3 class="section-script-title">Milk-Shake</h3>
+              </div>
+
+              <div class="space-y-2 text-sm mb-6">
+                <div class="menu-item-row"><span class="menu-item-name">Vanille</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Chocolat</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Caramel</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Fraise</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Orange Shake</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Yaourt</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Kitkat</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Snickers</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Lotus</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Oreo</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Kinder</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Nuttela</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Pistache</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+              </div>
+
+              <div class="text-center mb-3 pt-3 border-t border-gold/20">
+                <h3 class="section-script-title">Ice Coffee</h3>
+              </div>
+
+              <div class="space-y-2 text-sm">
+                <div class="menu-item-row"><span class="menu-item-name">Ice Americano</span><span class="menu-item-dots"></span><span class="menu-item-price">12 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Ice Coffée</span><span class="menu-item-dots"></span><span class="menu-item-price">14 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Ice Mocha</span><span class="menu-item-dots"></span><span class="menu-item-price">18 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Frappuccino Nature</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-gold/20 flex items-center gap-3">
+              <img src="images/drinks.png" alt="Drinks" class="w-14 h-14 rounded-lg object-cover border border-gold/40 shadow-md" />
+              <div>
+                <p class="text-xs font-bold text-cream">Onctueux & Glacé 🥤</p>
+                <p class="text-[11px] text-cream/50">Préparés avec amour.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Page: Fresh Juice & Mojito -->
+          <div class="book-page p-6 sm:p-8 rounded-xl flex flex-col justify-between">
+            <div>
+              <div class="text-center mb-3">
+                <span class="text-xs text-gold tracking-widest uppercase font-semibold">Page 6</span>
+                <h3 class="section-script-title">Fresh Juice</h3>
+              </div>
+
+              <div class="space-y-2 text-sm mb-6">
+                <div class="menu-item-row"><span class="menu-item-name">Orange</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Banane</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Citron</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Pomme</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Fraise</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Avocat</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Smoothie</span><span class="menu-item-dots"></span><span class="menu-item-price">22 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Ananas</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Mangue</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Panaché</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Ze3ze3</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+              </div>
+
+              <div class="text-center mb-3 pt-3 border-t border-gold/20">
+                <h3 class="section-script-title">Mojito</h3>
+              </div>
+
+              <div class="space-y-2 text-sm">
+                <div class="menu-item-row"><span class="menu-item-name">Mojito Classique</span><span class="menu-item-dots"></span><span class="menu-item-price">15 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Mojito Aromatisée</span><span class="menu-item-dots"></span><span class="menu-item-price">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Mojito Berry</span><span class="menu-item-dots"></span><span class="menu-item-price">22 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Mojito Energy</span><span class="menu-item-dots"></span><span class="menu-item-price">25 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Mojito Oasis</span><span class="menu-item-dots"></span><span class="menu-item-price">28 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name">Mojito Red Bull</span><span class="menu-item-dots"></span><span class="menu-item-price">35 dh</span></div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-gold/20 text-center">
+              <p class="text-xs text-gold/80 italic">Fruits frais pressés à la minute 🍊</p>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- ════════════ SPREAD 4: SPECIAL DRINKS & BON APPÉTIT ════════════ -->
+        <div id="spread-4" class="spread-content hidden grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 relative z-10">
+
+          <!-- Left Page: Special Drinks -->
+          <div class="book-page p-6 sm:p-8 rounded-xl flex flex-col justify-between min-h-[420px]">
+            <div>
+              <div class="text-center mb-6">
+                <span class="text-xs text-gold tracking-widest uppercase font-semibold">Page 7</span>
+                <h3 class="section-script-title">Special drinks</h3>
+              </div>
+
+              <div class="space-y-4 my-8">
+                <div class="menu-item-row"><span class="menu-item-name font-bold text-base">Pina Colada Aromatisé</span><span class="menu-item-dots"></span><span class="menu-item-price text-lg">20 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name font-bold text-base">Blue Hawai</span><span class="menu-item-dots"></span><span class="menu-item-price text-lg">23 dh</span></div>
+                <div class="menu-item-row"><span class="menu-item-name font-bold text-base">Pina Colada</span><span class="menu-item-dots"></span><span class="menu-item-price text-lg">25 dh</span></div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-gold/10 border border-gold/25 text-center mt-6">
+              <p class="text-xs text-gold font-bold">✨ Nos Cocktails Signature ✨</p>
+              <p class="text-[11px] text-cream/60 mt-0.5">Rafraîchissants & exotiques</p>
+            </div>
+          </div>
+
+          <!-- Right Page: Cover / Bon Appétit Signature -->
+          <div class="book-page p-6 sm:p-8 rounded-xl flex flex-col justify-between items-center text-center min-h-[420px]">
+            <div class="w-full flex justify-between items-center text-xs text-gold font-semibold">
+              <span>AyO MeD crêpe</span>
+              <span>Page 8</span>
+            </div>
+
+            <div class="my-auto py-6">
+              <img src="images/logo.png" alt="Logo Stamp" class="w-20 h-20 rounded-full object-cover ig-border mx-auto mb-4 shadow-xl" />
+              <h2 class="font-script text-5xl sm:text-6xl text-cream font-normal leading-none tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-gold via-gold-light to-gold">
+                Bon Appétit !
+              </h2>
+              <div class="gold-divider w-24 mx-auto my-4"></div>
+              <p class="text-cream/70 text-xs sm:text-sm max-w-xs mx-auto leading-relaxed">
+                Merci de votre visite chez AyO MeD crêpe. Nous vous souhaitons une excellente dégustation ! ❤️
+              </p>
+            </div>
+
+            <a href="https://wa.me/212600000000?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20passer%20une%20commande%20%F0%9F%A4%A4"
+               target="_blank" rel="noopener"
+               class="w-full bg-gradient-to-r from-gold to-gold-light text-charcoal font-black py-3.5 rounded-xl text-sm uppercase tracking-wider hover:scale-[1.02] transition-transform shadow-xl">
+              🛵 Commander directement via WhatsApp
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BOOK PAGE TURNER CONTROLS -->
+    <div class="flex items-center justify-between max-w-5xl mx-auto mt-8 px-2 reveal">
+      <button id="prev-page-btn" onclick="prevSpread()" class="flex items-center gap-2 text-cream/70 hover:text-gold text-sm font-bold bg-charcoal-mid border border-white/10 hover:border-gold/40 px-5 py-2.5 rounded-full transition-all">
+        ← Page Précédente
+      </button>
+
+      <span id="page-indicator" class="text-xs text-gold font-bold tracking-widest uppercase bg-white/5 border border-white/10 px-4 py-2 rounded-full">
+        Section 1 / 4
+      </span>
+
+      <button id="next-page-btn" onclick="nextSpread()" class="flex items-center gap-2 text-cream/70 hover:text-gold text-sm font-bold bg-charcoal-mid border border-white/10 hover:border-gold/40 px-5 py-2.5 rounded-full transition-all">
+        Page Suivante →
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ══ ABOUT & INSTAGRAM SHOWCASE ══ -->
+  <section id="about" class="py-20 px-4 bg-charcoal-mid border-y border-white/10">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Text content -->
+      <div class="reveal">
+        <div class="inline-flex items-center gap-2 bg-gold/15 text-gold border border-gold/30 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-4">
+          ✨ @ayomedcrepe sur Instagram
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black text-cream leading-tight font-serif mb-6">
+          Une expérience gourmande unique chaque jour
+        </h2>
+        <p class="text-cream/80 text-base leading-relaxed mb-6">
+          Bienvenue chez <strong>AyO MeD crêpe</strong> ! Notre mission est simple : vous apporter de la joie et du réconfort à chaque bouchée. Nous sélectionnons rigoureusement des ingrédients frais et de haute qualité pour concevoir nos crêpes sucrées et salées, nos tiramisus, nos cheesecakes et nos boissons rafraîchissantes.
+        </p>
+        <p class="text-cream/70 text-sm leading-relaxed mb-8">
+          Rejoignez notre communauté de plus de 1 600 gourmands sur Instagram pour suivre nos nouvelles créations, nos offres exclusives et nos moments de préparation en direct !
+        </p>
+
+        <!-- Instagram Profile CTA Card -->
+        <a href="https://www.instagram.com/ayomedcrepe/" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-4 p-4 rounded-2xl bg-charcoal border border-white/15 hover:border-pink-500/50 transition-all duration-300 group shadow-xl">
+          <img src="images/logo.png" alt="AyO MeD crêpe" class="w-14 h-14 rounded-full object-cover ig-border group-hover:scale-105 transition-transform" />
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-cream text-base">AyO MeD crêpe</span>
+              <span class="text-blue-400">✓</span>
+            </div>
+            <p class="text-cream/60 text-xs mt-0.5">1 672 Abonnés · 63 Publications</p>
+            <p class="text-pink-400 text-xs font-bold mt-1 group-hover:underline">Voir le profil Instagram →</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Image Grid Showcase -->
+      <div class="grid grid-cols-2 gap-4 reveal">
+        <div class="space-y-4">
+          <div class="rounded-3xl overflow-hidden border border-white/10 shadow-xl group">
+            <img src="images/sweet-crepe.png" alt="Crêpe sucrée AyO MeD" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div class="rounded-3xl overflow-hidden border border-white/10 shadow-xl group">
+            <img src="images/drinks.png" alt="Boissons AyO MeD" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+        </div>
+        <div class="space-y-4 pt-6">
+          <div class="rounded-3xl overflow-hidden border border-white/10 shadow-xl group">
+            <img src="images/savory-crepe.png" alt="Crêpe salée AyO MeD" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div class="rounded-3xl overflow-hidden border border-white/10 shadow-xl group bg-gradient-to-br from-gold/20 to-charcoal p-6 flex flex-col justify-center items-center text-center">
+            <span class="text-4xl mb-2">⭐</span>
+            <p class="text-gold font-extrabold text-lg">Qualité & Saveur</p>
+            <p class="text-cream/70 text-xs mt-1">Préparé avec amour ❤️</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ CONTACT & ACCÈS ══ -->
+  <section id="contact" class="py-20 px-4 max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="text-gold text-xs font-bold tracking-[0.25em] uppercase mb-2">📍 Toujours à votre service</p>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-cream font-serif">Contact & Localisation</h2>
+      <div class="gold-divider w-28 mx-auto mt-4 mb-3"></div>
+      <p class="text-cream/60 text-base">Venez nous rendre visite ou commandez en livraison à domicile 🛵</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 reveal">
+
+      <!-- Hours Card -->
+      <div class="bg-charcoal-mid p-8 rounded-3xl border border-white/10 text-center flex flex-col items-center">
+        <div class="w-14 h-14 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center text-2xl mb-4">
+          🕒
+        </div>
+        <h3 class="font-extrabold text-cream text-xl mb-2">Horaires d'Ouverture</h3>
+        <p class="text-cream/70 text-sm leading-relaxed">
+          Lundi – Dimanche<br/>
+          <strong class="text-gold">12:00 – 00:00</strong>
+        </p>
+        <span class="mt-4 text-[11px] text-cream/40 bg-white/5 px-3 py-1 rounded-full">Ouvert 7j/7</span>
+      </div>
+
+      <!-- Delivery Card -->
+      <div class="bg-charcoal-mid p-8 rounded-3xl border border-gold/40 text-center flex flex-col items-center shadow-xl relative">
+        <div class="w-14 h-14 rounded-2xl bg-gold/20 border border-gold/40 flex items-center justify-center text-2xl mb-4 scooter-anim">
+          🛵
+        </div>
+        <h3 class="font-extrabold text-cream text-xl mb-2">Livraison Rapide</h3>
+        <p class="text-cream/70 text-sm leading-relaxed mb-4">
+          Vos crêpes chaudes et boissons fraîches livrées directement à votre porte.
+        </p>
+        <a href="https://wa.me/212600000000?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20passer%20une%20commande%20%F0%9F%A4%A4"
+           target="_blank" rel="noopener"
+           class="bg-[#25D366] text-white font-extrabold px-6 py-2.5 rounded-full text-xs uppercase tracking-wider hover:bg-[#20BF5C] transition-colors shadow-md">
+          Commander maintenant
+        </a>
+      </div>
+
+      <!-- Google Maps Location Card -->
+      <div class="bg-charcoal-mid p-8 rounded-3xl border border-white/10 text-center flex flex-col items-center">
+        <div class="w-14 h-14 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center text-2xl mb-4">
+          📍
+        </div>
+        <h3 class="font-extrabold text-cream text-xl mb-2">Notre Emplacement</h3>
+        <p class="text-cream/70 text-sm leading-relaxed mb-4">
+          Retrouvez-nous facilement sur Google Maps pour votre itinéraire.
+        </p>
+        <a href="https://www.google.com/maps/place/Ayomed+Cr%C3%AApe+%26+Dessertsje/@34.9203725,-2.3173291,908m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd782300238360cb:0x33678fef6e12c133!8m2!3d34.9203725!4d-2.3147542!16s%2Fg%2F11zbkhzlvx?entry=ttu"
+           target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 bg-gradient-to-r from-gold to-gold-light text-charcoal font-black px-5 py-2.5 rounded-full text-xs uppercase tracking-wider hover:opacity-90 transition-opacity shadow-md">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Ouvrir Google Maps
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Embedded Interactive Google Map Container -->
+    <div class="reveal rounded-3xl overflow-hidden border border-gold/30 shadow-2xl bg-charcoal-mid p-2">
+      <div class="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden">
+        <iframe
+          title="Google Maps Location AyO MeD crêpe"
+          src="https://maps.google.com/maps?q=34.9203725,-2.3147542&t=&z=16&ie=UTF8&iwloc=&output=embed"
+          width="100%"
+          height="100%"
+          style="border:0; filter: contrast(1.1) opacity(0.92);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="absolute bottom-4 left-4 bg-charcoal/90 backdrop-blur-md border border-gold/30 px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-3">
+          <span class="text-xl">📍</span>
+          <div>
+            <p class="text-xs font-bold text-cream">Ayomed Crêpe & Desserts</p>
+            <p class="text-[10px] text-gold">34.9203725, -2.3147542</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="bg-charcoal border-t border-white/10 py-10 px-4 text-center">
+    <div class="max-w-6xl mx-auto flex flex-col items-center gap-4">
+      <div class="flex items-center gap-3">
+        <img src="images/logo.png" alt="AyO MeD crêpe" class="w-9 h-9 rounded-full object-cover ig-border" />
+        <span class="font-black text-cream text-lg font-serif">AyO MeD <em class="text-gold not-italic">crêpe</em></span>
+      </div>
+      <p class="text-cream/50 text-xs max-w-md">
+        © 2026 AyO MeD crêpe. Tous droits réservés. Où la haute qualité rencontre une saveur d'exception.
+      </p>
+      <div class="flex gap-4 text-xs text-cream/40 pt-2">
+        <a href="#hero" class="hover:text-gold transition-colors">Accueil</a>
+        <span>·</span>
+        <a href="#menu" class="hover:text-gold transition-colors">Menu Livre</a>
+        <span>·</span>
+        <a href="https://www.instagram.com/ayomedcrepe/" target="_blank" rel="noopener" class="hover:text-gold transition-colors">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ FLOATING WHATSAPP BUTTON ══ -->
+  <a href="https://wa.me/212600000000?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20passer%20une%20commande%20%F0%9F%A4%A4"
+     target="_blank" rel="noopener" aria-label="Commander sur WhatsApp"
+     class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center border-2 border-white/20">
+    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.127 1.535 5.855L.057 23.52a.5.5 0 0 0 .614.614l5.666-1.478A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 0 1-5.002-1.367l-.36-.213-3.724.97.99-3.614-.234-.373A9.818 9.818 0 1 1 12 21.818z"/></svg>
+  </a>
+
+  <!-- ══ INTERACTIVITY SCRIPTS ══ -->
+  <script>
+    let currentSpread = 1;
+    const totalSpreads = 4;
+
+    function updatePageIndicator() {
+      const indicator = document.getElementById('page-indicator');
+      if (indicator) {
+        indicator.textContent = `Section ${currentSpread} / ${totalSpreads}`;
+      }
+    }
+
+    function goToSpread(spreadNum, btn) {
+      currentSpread = spreadNum;
+      document.querySelectorAll('.spread-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.book-tab-btn').forEach(el => el.classList.remove('active'));
+
+      const target = document.getElementById('spread-' + spreadNum);
+      if (target) {
+        target.classList.remove('hidden');
+        target.classList.add('animate-fade-up');
+      }
+
+      if (btn) {
+        btn.classList.add('active');
+      } else {
+        const tabs = document.querySelectorAll('.book-tab-btn');
+        if (tabs[spreadNum - 1]) tabs[spreadNum - 1].classList.add('active');
+      }
+
+      updatePageIndicator();
+    }
+
+    function nextSpread() {
+      if (currentSpread < totalSpreads) {
+        goToSpread(currentSpread + 1);
+      } else {
+        goToSpread(1); // loop back
+      }
+    }
+
+    function prevSpread() {
+      if (currentSpread > 1) {
+        goToSpread(currentSpread - 1);
+      } else {
+        goToSpread(totalSpreads); // loop end
+      }
+    }
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('mobile-overlay');
+      if (menu.classList.contains('open')) {
+        closeMobileMenu();
+      } else {
+        menu.classList.add('open');
+        overlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('mobile-overlay');
+      menu.classList.remove('open');
+      overlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Scroll Reveal Observer
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      updatePageIndicator();
+    });
+  </script>
+
+</body>
+</html>
