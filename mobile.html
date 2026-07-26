@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#14110E" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="AyO MeD crêpe — L'Application Mobile Officielle de Livraison & Menu. Inspirée de la simplicité et de l'efficacité McDelivery." />
+  <meta name="description" content="AyO MeD crêpe — L'Application Mobile Officielle de Livraison & Menu Complet." />
   <title>AyO MeD crêpe | App Mobile Officielle 📱</title>
 
   <!-- Favicon & Brand Icons -->
@@ -33,10 +33,9 @@
             script: ['Great Vibes', 'cursive'],
           },
           colors: {
-            gold:   { DEFAULT: '#FFC72C', light: '#FFE17D', dark: '#C9973A' }, // Inspired by iconic yellow/gold accents
+            gold:   { DEFAULT: '#FFC72C', light: '#FFE17D', dark: '#C9973A' },
             cream:  { DEFAULT: '#FDF7EE', dark: '#F4ECE1' },
             charcoal:{ DEFAULT: '#14110E', mid: '#1F1914', card: '#27201A' },
-            mcRed:  { DEFAULT: '#DB0007', dark: '#B30006' }
           }
         }
       }
@@ -51,7 +50,7 @@
       color: #FDF7EE;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
-      padding-bottom: 85px;
+      padding-bottom: 90px;
     }
 
     .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -61,12 +60,12 @@
     .mc-card {
       background: #1F1914;
       border: 1px solid rgba(255, 199, 44, 0.2);
-      border-radius: 24px;
+      border-radius: 20px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
     }
     .mc-card:active {
-      transform: scale(0.97);
+      transform: scale(0.98);
       border-color: #FFC72C;
     }
 
@@ -74,8 +73,8 @@
     .mc-category-tile {
       background: linear-gradient(145deg, #27201A, #1A1410);
       border: 1px solid rgba(255, 199, 44, 0.2);
-      border-radius: 20px;
-      padding: 14px 10px;
+      border-radius: 18px;
+      padding: 12px 6px;
       text-align: center;
       transition: all 0.2s ease;
     }
@@ -89,9 +88,9 @@
 
     /* Bottom App Bar */
     .mc-bottom-bar {
-      background: rgba(20, 17, 14, 0.96);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(20, 17, 14, 0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border-top: 1px solid rgba(255, 199, 44, 0.25);
     }
 
@@ -102,7 +101,7 @@
 
     /* Toast Notification */
     .mc-toast {
-      animation: mcToast 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+      animation: mcToast 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
     }
     @keyframes mcToast {
       0% { opacity: 0; transform: translate(-50%, -20px) scale(0.9); }
@@ -156,7 +155,7 @@
   </header>
 
   <!-- ══ MCDONALD'S PROMO BANNER CAROUSEL ══ -->
-  <section class="p-4">
+  <section class="p-4 pb-2">
     <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#27201A] to-[#17120E] border border-[#FFC72C]/30 p-5 shadow-2xl">
       <img src="images/hero.png" alt="AyO MeD Special" class="absolute inset-0 w-full h-full object-cover opacity-20 scale-105" />
       
@@ -166,278 +165,410 @@
         </span>
         
         <h2 class="text-2xl font-black text-cream font-serif leading-tight">
-          Commandez vos Crêpes & Desserts Préférés !
+          La Carte Complète Du Restaurant !
         </h2>
         
         <p class="text-cream/70 text-xs leading-relaxed max-w-xs">
-          Haute qualité & saveur d'exception livrées directement chez vous à Ouarda / Berkane.
+          Commandez vos Crêpes, Tiramisus & Boissons livrées directement chez vous (06 08 15 15 34).
         </p>
 
-        <div class="pt-3 flex gap-2">
+        <div class="pt-2 flex gap-2">
           <a href="https://wa.me/212608151534?text=Bonjour%20AyO%20MeD%20cr%C3%AApe,%20je%20souhaite%20commander%20une%20livraison%20%F0%9F%A4%A4"
              target="_blank" rel="noopener"
              class="flex-1 bg-[#25D366] text-white font-black py-3 px-4 rounded-2xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform">
-            <span>🛵 Commander Livraison</span>
+            <span>🛵 Commander sur WhatsApp</span>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══ MCDONALD'S CATEGORY GRID NAVIGATION (2x3 TILES) ══ -->
-  <section class="px-4 pb-4">
+  <!-- ══ CATEGORY GRID TILES ══ -->
+  <section class="px-4 py-3">
     <div class="flex justify-between items-center mb-3">
-      <h3 class="font-extrabold text-cream text-sm uppercase tracking-wider font-serif">Nos Catégories</h3>
-      <span class="text-[11px] text-[#FFC72C] font-bold">50+ Produit</span>
+      <h3 class="font-extrabold text-cream text-sm uppercase tracking-wider font-serif">Toutes les Catégories</h3>
+      <span class="text-[11px] text-[#FFC72C] font-bold">60+ Produit</span>
     </div>
 
-    <div class="grid grid-cols-3 gap-2.5">
+    <div class="grid grid-cols-4 gap-2">
       <button onclick="selectCategory('all', this)" class="mc-category-tile active">
-        <span class="text-2xl block mb-1">✨</span>
-        <span class="text-xs font-bold block">Tous</span>
+        <span class="text-xl block mb-0.5">✨</span>
+        <span class="text-[11px] font-bold block">Tous</span>
       </button>
 
       <button onclick="selectCategory('crepe-salee', this)" class="mc-category-tile">
-        <span class="text-2xl block mb-1">🍳</span>
-        <span class="text-xs font-bold block">Salées</span>
+        <span class="text-xl block mb-0.5">🍳</span>
+        <span class="text-[11px] font-bold block">Salées</span>
       </button>
 
       <button onclick="selectCategory('crepe-sucree', this)" class="mc-category-tile">
-        <span class="text-2xl block mb-1">🍫</span>
-        <span class="text-xs font-bold block">Sucrées</span>
+        <span class="text-xl block mb-0.5">🍫</span>
+        <span class="text-[11px] font-bold block">Sucrées</span>
       </button>
 
       <button onclick="selectCategory('dessert', this)" class="mc-category-tile">
-        <span class="text-2xl block mb-1">🍰</span>
-        <span class="text-xs font-bold block">Desserts</span>
+        <span class="text-xl block mb-0.5">🍰</span>
+        <span class="text-[11px] font-bold block">Desserts</span>
       </button>
 
       <button onclick="selectCategory('patisserie', this)" class="mc-category-tile">
-        <span class="text-2xl block mb-1">🍪</span>
-        <span class="text-xs font-bold block">Pâtisserie</span>
+        <span class="text-xl block mb-0.5">🍪</span>
+        <span class="text-[11px] font-bold block">Pâtisserie</span>
+      </button>
+
+      <button onclick="selectCategory('milkshake', this)" class="mc-category-tile">
+        <span class="text-xl block mb-0.5">🥤</span>
+        <span class="text-[11px] font-bold block">Shakes</span>
+      </button>
+
+      <button onclick="selectCategory('jus', this)" class="mc-category-tile">
+        <span class="text-xl block mb-0.5">🍊</span>
+        <span class="text-[11px] font-bold block">Jus Frais</span>
       </button>
 
       <button onclick="selectCategory('boisson', this)" class="mc-category-tile">
-        <span class="text-2xl block mb-1">🥤</span>
-        <span class="text-xs font-bold block">Boissons</span>
+        <span class="text-xl block mb-0.5">🍹</span>
+        <span class="text-[11px] font-bold block">Mojitos</span>
       </button>
     </div>
   </section>
 
-  <!-- ══ MCDONALD'S STYLE LIVE SEARCH BAR ══ -->
-  <section class="px-4 pb-4">
+  <!-- ══ LIVE SEARCH BAR ══ -->
+  <section class="px-4 pb-3">
     <div class="relative">
       <input type="text" id="mc-search-input" onkeyup="filterMcProducts()"
-             placeholder="🔍 Rechercher (ex: Nutella, Mojito, Tiramisu...)"
+             placeholder="🔍 Rechercher un plat, Nutella, Mojito, Tiramisu..."
              class="w-full bg-[#1F1914] border border-[#FFC72C]/30 rounded-2xl py-3 px-4 text-xs text-cream placeholder-cream/40 focus:border-[#FFC72C] shadow-md" />
     </div>
   </section>
 
-  <!-- ══ MCDONALD'S PRODUCT CATALOG GRID ══ -->
+  <!-- ══ MCDONALD'S COMPLETE PRODUCT CATALOG GRID (ALL 60+ ITEMS) ══ -->
   <section class="px-4 space-y-4">
     <div class="flex justify-between items-center">
-      <h3 class="font-extrabold text-cream text-base font-serif" id="mc-catalog-title">Les Incontournables AyO MeD</h3>
-      <span class="text-xs text-[#FFC72C] font-bold">Prix Officiels</span>
+      <h3 class="font-extrabold text-cream text-base font-serif" id="mc-catalog-title">Le Menu Officiel AyO MeD</h3>
+      <span class="text-xs text-[#FFC72C] font-bold">Prix MAMP</span>
     </div>
 
-    <!-- Product Grid Cards -->
-    <div id="mc-products-grid" class="grid grid-cols-1 gap-3.5">
+    <!-- Product Grid Cards Container -->
+    <div id="mc-products-grid" class="grid grid-cols-1 gap-3">
 
       <!-- 🍳 CRÊPES SALÉES -->
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="Végétarien">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🍳
-        </div>
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="Végétarien">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍳</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">Végétarien 🍳</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">25 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">25 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Légumes frais saisis, fromage & herbes de Provence.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Légumes frais saisis, fromage & herbes.</p>
         </div>
-        <button onclick="addToCart('Crêpe Végétarien', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('Crêpe Végétarien', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="La Queen">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          👑
-        </div>
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="La Queen">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">👑</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">La Queen 👑</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">30 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">30 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Jambon de dinde, fromage fondu & champignon.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Jambon de dinde, fromage fondu & champignon.</p>
         </div>
-        <button onclick="addToCart('La Queen', 30)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('La Queen', 30)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="4 Fromages">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🧀
-        </div>
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="4 Fromages">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🧀</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">4 Fromages 🧀</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">35 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">35 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Mozzarella, cheddar, emmental & fromage bleu.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Mozzarella, cheddar, emmental & bleu.</p>
         </div>
-        <button onclick="addToCart('4 Fromages', 35)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('4 Fromages', 35)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item border-[#FFC72C]/50" data-cat="crepe-salee" data-name="Ayo Med Signature">
-        <div class="w-16 h-16 rounded-2xl bg-[#FFC72C]/20 border border-[#FFC72C]/40 flex items-center justify-center text-3xl shrink-0">
-          ⭐
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="Lathon">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🐟</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Lathon 🐟</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">35 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Thon premier choix, olives & fromage fondu.</p>
         </div>
+        <button onclick="addToCart('Crêpe Lathon', 35)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="Switzerland">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🇨🇭</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Switzerland 🇨🇭</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">35 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Spécialité suisse au fromage raclette et poivre.</p>
+        </div>
+        <button onclick="addToCart('Switzerland', 35)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="La Mexicaine">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🌮</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">La Mexicaine 🌮</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">40 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Viande pimentée, poivrons & fromage râpé.</p>
+        </div>
+        <button onclick="addToCart('La Mexicaine', 40)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item border-[#FFC72C]/50" data-cat="crepe-salee" data-name="Ayo Med Signature">
+        <div class="w-14 h-14 rounded-2xl bg-[#FFC72C]/20 border border-[#FFC72C]/40 flex items-center justify-center text-2xl shrink-0">⭐</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-black text-cream text-sm truncate">Ayo Med Signature ⭐</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">45 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">45 DH</span>
           </div>
-          <p class="text-cream/70 text-[11px] mt-1 line-clamp-2">Viande hachée assaisonnée, double fromage & œuf miroir.</p>
+          <p class="text-cream/70 text-[11px] mt-0.5 truncate">Viande hachée assaisonnée, double fromage & œuf miroir.</p>
         </div>
-        <button onclick="addToCart('Ayo Med Signature', 45)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('Ayo Med Signature', 45)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-salee" data-name="Asiatique">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🥢</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Asiatique 🥢</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">55 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Poulet teriyaki, légumes sautés et sauce asiatique.</p>
+        </div>
+        <button onclick="addToCart('Asiatique', 55)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
       <!-- 🍫 CRÊPES SUCRÉES -->
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Nutella Banane">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🍌
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Caramel">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍯</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Caramel 🍯</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">15 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Caramel au beurre salé onctueux.</p>
         </div>
+        <button onclick="addToCart('Caramel', 15)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Miel">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🐝</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Miel 🐝</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">15 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Miel naturel d'abeille pur.</p>
+        </div>
+        <button onclick="addToCart('Miel', 15)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Nutella">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍫</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Nutella 🍫</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">20 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Nutella crémeux généreux.</p>
+        </div>
+        <button onclick="addToCart('Nutella', 20)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Nutella Banane">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍌</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">Nutella Banane 🍌</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">25 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">25 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Nutella crémeux généreux & bananes fraîches tranchées.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Nutella crémeux & bananes fraîches.</p>
         </div>
-        <button onclick="addToCart('Nutella Banane', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('Nutella Banane', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Kunafa Nutella Pistache">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🍫
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Kinder Bueno">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍪</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Kinder Bueno 🍪</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">25 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Chocolat Kinder Bueno fondant & noisettes.</p>
         </div>
+        <button onclick="addToCart('Kinder Bueno', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Kunafa Nutella Pistache">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🥜</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">Kunafa Nutella Pistache 🍫</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">30 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">30 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Kunafa croustillante, Nutella & éclats de pistaches.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Kunafa croustillante, Nutella & pistaches.</p>
         </div>
-        <button onclick="addToCart('Kunafa Nutella Pistache', 30)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('Kunafa Nutella Pistache', 30)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Dubai Special">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🌴
-        </div>
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Dubai Special">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🌴</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">Dubai Special 🌴</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">35 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">35 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Pistache orientale, kunafa & chocolat d'exception.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Pistache orientale, kunafa & chocolat.</p>
         </div>
-        <button onclick="addToCart('Dubai Special', 35)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('Dubai Special', 35)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Sushi Crepe">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🍣
-        </div>
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="crepe-sucree" data-name="Sushi Crepe">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍣</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">Sushi Crêpe 🍣</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">55 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">55 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Rouleaux créatifs de crêpes farcis au chocolat.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Rouleaux créatifs de crêpes au chocolat.</p>
         </div>
-        <button onclick="addToCart('Sushi Crêpe', 55)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('Sushi Crêpe', 55)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
       <!-- 🍰 DESSERTS & CHEESECAKE -->
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="dessert" data-name="Cheesecake Lotus">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🍰
-        </div>
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="dessert" data-name="Cheesecake Lotus">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍰</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">Cheesecake Lotus 🍰</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">15 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">15 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Biscuit Spéculoos & crème fondante.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Biscuit Spéculoos & crème fondante.</p>
         </div>
-        <button onclick="addToCart('Cheesecake Lotus', 15)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('Cheesecake Lotus', 15)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="dessert" data-name="Tiramisu Kinder Bueno">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🍮
-        </div>
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="dessert" data-name="Cheesecake Dubai">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🌴</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
-            <h4 class="font-bold text-cream text-sm truncate">Tiramisu Kinder Bueno 🍮</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">25 DH</span>
+            <h4 class="font-bold text-cream text-sm truncate">Cheesecake Dubai 🌴</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">20 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Fait maison au Kinder Bueno & crème noisette.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Cheesecake pistache & kunafa.</p>
         </div>
-        <button onclick="addToCart('Tiramisu Kinder Bueno', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('Cheesecake Dubai', 20)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="dessert" data-name="Tiramisu Kinder Bueno">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍮</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Tiramisu Kinder 🍮</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">25 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Fait maison au Kinder Bueno.</p>
+        </div>
+        <button onclick="addToCart('Tiramisu Kinder Bueno', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
       <!-- 🍪 PÂTISSERIE -->
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="patisserie" data-name="San Sebastian Pistache">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🍪
-        </div>
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="patisserie" data-name="San Sebastian Pistache">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍪</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">San Sebastian Pistache 🍪</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">25 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">25 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Gâteau basque caramélisé nappé de pistache.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Gâteau basque caramélisé pistache.</p>
         </div>
-        <button onclick="addToCart('San Sebastian Pistache', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('San Sebastian Pistache', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
-      <!-- 🥤 BOISSONS & MOJITOS -->
-      <div class="mc-card p-4 flex items-center justify-between gap-3 mc-product-item" data-cat="boisson" data-name="Mojito Red Bull">
-        <div class="w-16 h-16 rounded-2xl bg-[#14110E] flex items-center justify-center text-3xl shrink-0 border border-white/10">
-          🍹
+      <!-- 🥤 MILK-SHAKES -->
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="milkshake" data-name="Milkshake Kitkat">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🥤</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Milkshake Kitkat 🥤</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">25 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Milkshake Kitkat glacé crémeux.</p>
         </div>
+        <button onclick="addToCart('Milkshake Kitkat', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="milkshake" data-name="Milkshake Oreo">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍪</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Milkshake Oreo 🍪</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">25 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Glacé Oreo crushed & vanille.</p>
+        </div>
+        <button onclick="addToCart('Milkshake Oreo', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <!-- 🍊 JUS FRAIS -->
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="jus" data-name="Jus Orange">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍊</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Jus d'Orange Frais 🍊</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">15 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Orange fraîchement pressée.</p>
+        </div>
+        <button onclick="addToCart('Jus Orange', 15)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="jus" data-name="Ze3ze3">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍹</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Ze3ze3 Special 🍹</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">35 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Grand jus avocat, fruits & fruits secs.</p>
+        </div>
+        <button onclick="addToCart('Ze3ze3 Special', 35)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <!-- 🍹 MOJITOS -->
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="boisson" data-name="Mojito Red Bull">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍹</div>
         <div class="flex-1 min-w-0">
           <div class="flex justify-between items-start">
             <h4 class="font-bold text-cream text-sm truncate">Mojito Red Bull 🍹</h4>
-            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2.5 py-0.5 rounded-full shrink-0">35 DH</span>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">35 DH</span>
           </div>
-          <p class="text-cream/50 text-[11px] mt-1 line-clamp-2">Menthe fraîche, citron vert & Red Bull.</p>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Menthe fraîche, citron vert & Red Bull.</p>
         </div>
-        <button onclick="addToCart('Mojito Red Bull', 35)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3.5 py-2.5 rounded-xl shrink-0 active:scale-95 transition-transform shadow-md">
-          + Ajouter
-        </button>
+        <button onclick="addToCart('Mojito Red Bull', 35)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
+      </div>
+
+      <div class="mc-card p-3.5 flex items-center justify-between gap-3 mc-product-item" data-cat="boisson" data-name="Pina Colada">
+        <div class="w-14 h-14 rounded-2xl bg-[#14110E] flex items-center justify-center text-2xl shrink-0 border border-white/10">🍍</div>
+        <div class="flex-1 min-w-0">
+          <div class="flex justify-between items-start">
+            <h4 class="font-bold text-cream text-sm truncate">Pina Colada 🍍</h4>
+            <span class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-2 py-0.5 rounded-full shrink-0">25 DH</span>
+          </div>
+          <p class="text-cream/50 text-[11px] mt-0.5 truncate">Ananas frais & lait de coco.</p>
+        </div>
+        <button onclick="addToCart('Pina Colada', 25)" class="bg-[#FFC72C] text-[#14110E] font-black text-xs px-3 py-2 rounded-xl shrink-0 active:scale-95 transition-transform">+ Ajouter</button>
       </div>
 
     </div>
@@ -447,7 +578,7 @@
   <section id="mc-location" class="p-4 pt-6">
     <div class="mc-card p-5 text-center space-y-3">
       <div class="flex items-center justify-center gap-2 text-[#FFC72C] font-extrabold text-xs uppercase tracking-widest">
-        <span>📍 Restaurant & Itinéraire</span>
+        <span>📍 Restaurant & Itinéraire Google Maps</span>
       </div>
 
       <div class="w-full h-48 rounded-2xl overflow-hidden border border-white/10 shadow-inner">
@@ -471,7 +602,7 @@
   </section>
 
   <!-- ══ FOOTER & SWITCH TO DESKTOP ══ -->
-  <footer class="p-4 text-center space-y-3">
+  <footer class="p-4 text-center space-y-3 pb-24">
     <button onclick="switchToDesktop()" class="text-xs text-[#FFC72C] underline font-bold">
       💻 Afficher la version Ordinateur (Desktop)
     </button>
@@ -487,29 +618,29 @@
     </button>
   </div>
 
-  <!-- ══ CART MODAL DRAWER ══ -->
+  <!-- ══ CART MODAL DRAWER (FIXED BOTTOM OVERLAY WITH PROPER SCROLLING & PADDING) ══ -->
   <div id="cart-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex flex-col justify-end">
-    <div class="bg-[#1F1914] border-t-2 border-[#FFC72C] rounded-t-3xl p-6 max-h-[85vh] flex flex-col justify-between shadow-2xl">
+    <div class="bg-[#1F1914] border-t-2 border-[#FFC72C] rounded-t-3xl p-5 pb-24 max-h-[90vh] flex flex-col justify-between shadow-2xl overflow-hidden">
       <div>
-        <div class="flex justify-between items-center pb-4 border-b border-white/10">
+        <div class="flex justify-between items-center pb-3 border-b border-white/10">
           <h3 class="font-extrabold text-cream text-base flex items-center gap-2">
             <span>🛒 Votre Panier De Commande</span>
           </h3>
           <button onclick="closeCartModal()" class="text-cream/60 hover:text-[#FFC72C] text-xl font-bold p-1">✕</button>
         </div>
 
-        <div id="cart-items-list" class="py-4 space-y-3 max-h-60 overflow-y-auto pr-1">
+        <div id="cart-items-list" class="py-3 space-y-2.5 max-h-[42vh] overflow-y-auto pr-1">
           <!-- Cart items injected dynamically -->
         </div>
       </div>
 
-      <div class="pt-4 border-t border-white/10 space-y-3">
+      <div class="pt-3 border-t border-white/10 space-y-3 mt-2">
         <div class="flex justify-between items-center text-sm font-extrabold">
           <span class="text-cream">Total Estimé:</span>
-          <span id="cart-total-price" class="text-[#FFC72C] text-lg font-serif">0 DH</span>
+          <span id="cart-total-price" class="text-[#FFC72C] text-xl font-serif">0 DH</span>
         </div>
 
-        <button onclick="sendCartToWhatsApp()" class="w-full bg-[#25D366] text-white font-black py-4 rounded-2xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg active:scale-98 transition-transform">
+        <button onclick="sendCartToWhatsApp()" class="w-full bg-[#25D366] text-white font-black py-4 rounded-2xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl active:scale-98 transition-transform">
           <span>🛵 Valider & Commander sur WhatsApp</span>
         </button>
       </div>
